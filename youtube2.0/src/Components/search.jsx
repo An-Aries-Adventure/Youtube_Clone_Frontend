@@ -7,9 +7,8 @@ class SearchBar extends Component {
         super(props)
 
         this.state = {
-            term: ''
+            term: 'Search Videos'
         };
-
         this.onInputChange = this
             .onInputChange
             .bind(this);
@@ -19,10 +18,12 @@ class SearchBar extends Component {
         this.setState({term: event.target.value});
         console.log(this.state.term);
     };
+
     render() {
         return (
             <div>
-                <input value={this.state.term} onChange={this.onInputChange}/> SEARCH HERE    //SHOULD MAKE THIS BUTTON WITH ONCLICK FUNCTIONALITY
+                <input value={this.state.term} onChange={this.onInputChange}/>
+
             </div>
         );
     };
