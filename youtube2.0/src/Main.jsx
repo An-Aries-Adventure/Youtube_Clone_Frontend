@@ -1,9 +1,20 @@
 import React from 'react';
+import { Component } from 'react';
+import SearchBar from './Components/search';
 
-function App() {
+
+
+class App extends Component {
+  render(){
   return (
-    null
+    <div>
+      <SearchBar/>
+    </div>
   );
 }
+}
+
+
+
 
 export default App;
