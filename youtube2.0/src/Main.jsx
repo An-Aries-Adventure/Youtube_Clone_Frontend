@@ -18,7 +18,10 @@ class App extends Component {
     }
     render() {
         return (
+        <body className="container">
             <div>
+                <h1>Youtube Clone</h1>
+                
                 <SearchBar/>
 
                 <iframe
@@ -29,6 +32,7 @@ class App extends Component {
                     src="https://www.youtube.com/embed/BtfucXjju0k?autoplay=1&origin=http://example.com"
                     frameborder="0"></iframe>
             </div>
+        </body>
         );
     }
 }

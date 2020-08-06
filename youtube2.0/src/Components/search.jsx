@@ -2,6 +2,7 @@ import React from 'react'
 import {Component} from 'react'
 import axios from 'axios';
 import API_KEY from '../config/default.json'
+import './Stylesheets/main.css'
 
 class SearchBar extends Component {
 
@@ -27,8 +28,8 @@ class SearchBar extends Component {
 
     getVideos = () => {
         const ApiKey = API_KEY;
-        const searchTerm = '';
-        const apiEndpoint = "https://www.googleapis.com/youtube/v3/search?key=" + `${ApiKey.API_KEY}` + "&part=snippet&q=" + `${searchTerm}`
+        // const searchTerm = document.getElementById('searchInput').value;
+        const apiEndpoint = "https://www.googleapis.com/youtube/v3/search?key=" + `${ApiKey.API_KEY}` + "&part=snippet&q=" + `${this.state.searchTerm}`;
         console.log(apiEndpoint);
         axios
             .get(apiEndpoint)
@@ -55,8 +56,8 @@ class SearchBar extends Component {
             <div>
                 <form onSubmit={this.getVideos}>
                     <label>
-                        Search
-                        <input type="text" name="name"/>
+                        Find Your Video  <br/>
+                        <input type="text" id ="searchInput"></input>
                     </label>
                     <input type="Submit" value="Submit" onChange={this.handleChange}/>
                 </form>
