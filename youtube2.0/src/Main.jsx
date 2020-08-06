@@ -4,7 +4,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {Component} from 'react';
 import SearchBar from './Components/search';
 import API_KEY from './config/default.json'
-import YTSearch from 'youtube-api-search';
 
 const ApiKey = API_KEY;
 

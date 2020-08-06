@@ -3,50 +3,52 @@ import {Component} from 'react'
 import axios from 'axios';
 import API_KEY from '../config/default.json'
 
-const ApiKey = API_KEY;
-
 class SearchBar extends Component {
 
     constructor(props) {
         super(props)
 
         this.state = {
-            value: '',
-            term: 'Search Videos',
-            videos: []
+            searchTerm: '',
+            videos: '',
+            loading: true
         };
-        this.getYTvideos = this
-            .getYTvideos
+        this.getVideos = this
+            .getVideos
             .bind(this);
         this.handleChange = this
             .handleChange
             .bind(this);
     };
+
     handleChange(event) {
-        this.setState({value: event.target.value});  //this is HANDLECHANGE(USER INPUT)
+        this.setState({searchTerm: event.target.value}); //this is HANDLECHANGE(USER INPUT)
     }
-    getYTvideos = (click) => {                       //this is HANDLESUBMIT(CLICK SUBMIT)
-        this.setState({
-            videos: Response.data
-        })
-        
+
+    getVideos = () => {
+        const ApiKey = API_KEY;
+        const searchTerm = 'Hello';
+        console.log(ApiKey.API_KEY)
+        const apiEndpoint = "https://www.googleapis.com/youtube/v3/search?key=" + `${ApiKey.API_KEY}` + "&part=snippet&q=" + `${searchTerm}`
+        console.log(apiEndpoint);
+        axios
+            .get(apiEndpoint)
+            .then((response) => {
+                let videoData = response.data;
+                console.log(videoData);
+                this.setState({
+                    videos: videoData,
+                    loading: !true
+                })
+                console.log(this.state.videos)
+            })
+        this.setState({videos: ''})
+
         console.log(this.state.videos)
+    };
 
-        let apiEndpoint = "https://www.googleapis.com/youtube/v3/videos/search";
-        apiEndpoint += ApiKey.API_KEY;
-
-        axios({
-            data: Response.data,
-            url: apiEndpoint,
-            type: 'get',
-            contentType: 'application,json',
-            success: function (videos, textStatus, jQxhr) {
-                console.log(videos.items);
-            },
-            error: function (jQxhr, textStatus, errorThrown) {
-                console.log(errorThrown)
-            }
-        })
+    componentDidMount = () => {
+        this.getVideos();
     }
 
     render() {
@@ -55,7 +57,7 @@ class SearchBar extends Component {
                 <form onSubmit={this.getYTvideos}>
                     <label>
                         Search
-                        <input id='searchbox' type="text" name="name"/>
+                        <input type="text" name="name"/>
                     </label>
                     <input type="Submit" value="Submit" onChange={this.handleChange}/>
                 </form>
