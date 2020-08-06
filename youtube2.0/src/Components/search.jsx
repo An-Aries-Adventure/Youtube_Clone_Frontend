@@ -37,6 +37,7 @@ class SearchBar extends Component {
                 console.log(videoData);
                 this.setState({
                     videos: videoData,
+                    index: 0,
                     loading: !true
                 })
                 console.log(this.state.videos)
@@ -48,6 +49,12 @@ class SearchBar extends Component {
 
     componentDidMount = () => {
         this.getVideos();
+    }
+    //let userChoice = onClick =>
+    selectVideo() {
+     selectedVideo = this.setState(this.state.videos[index])
+     src="https://www.youtube.com/embed/BtfucXjju0k?autoplay=1&origin=http://example.com"
+
     }
 
     render() {
