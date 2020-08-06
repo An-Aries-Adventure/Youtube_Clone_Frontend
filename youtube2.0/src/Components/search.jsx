@@ -27,8 +27,7 @@ class SearchBar extends Component {
 
     getVideos = () => {
         const ApiKey = API_KEY;
-        const searchTerm = 'Hello';
-        console.log(ApiKey.API_KEY)
+        const searchTerm = '';
         const apiEndpoint = "https://www.googleapis.com/youtube/v3/search?key=" + `${ApiKey.API_KEY}` + "&part=snippet&q=" + `${searchTerm}`
         console.log(apiEndpoint);
         axios
@@ -42,7 +41,7 @@ class SearchBar extends Component {
                 })
                 console.log(this.state.videos)
             })
-        this.setState({videos: ''})
+        // this.setState({videos: ''})
 
         console.log(this.state.videos)
     };
@@ -54,7 +53,7 @@ class SearchBar extends Component {
     render() {
         return (
             <div>
-                <form onSubmit={this.getYTvideos}>
+                <form onSubmit={this.getVideos}>
                     <label>
                         Search
                         <input type="text" name="name"/>
