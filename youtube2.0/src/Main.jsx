@@ -55,6 +55,13 @@ export default class App extends Component {
         this.getVideos();
     }
 
+    //   //let userChoice = onClick =>
+    //   selectVideo(){
+    //     this.setState(this.state.videos[index].id.videoId)
+    //     let selectedVideo ="https://www.youtube.com/embed/" + userChoice + "?autoplay=1&origin=http://example.com"
+    //     return selectedVideo
+    // }
+
     render() {
         return (
             <body className="container">
