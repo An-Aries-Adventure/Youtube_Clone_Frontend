@@ -3,10 +3,11 @@ import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Component} from 'react';
 import API_KEY from './config/default.json'
+import './Components/Stylesheets/main.css'
 
 const ApiKey = API_KEY;
 
-class App extends Component {
+export default class App extends Component {
 
     constructor(props) {
         super(props)
@@ -67,7 +68,6 @@ class App extends Component {
         return "https://www.youtube.com/embed/" +`${chosenVideo}`+ "?autoplay=1&origin=http://example.com"
     }
 
-
     renderIframe(){
         if (this.state.loading === !true) {
         return (
@@ -84,18 +84,42 @@ class App extends Component {
     }
 
 
-
     render() {
         return (
-        <body className="container">
-            <div>
-                <h1>Youtube Clone</h1>
-                
-                {this.renderIframe()}
-            </div>
-            </body>
-        );
-    }
-}
+            <body className="container">
+                <div>
+                    <h1>Youtube Clone</h1>
+                {renderIframe()}
+                </div>
+                <div>
+                    <form onSubmit={this.getVideos}>
+                        <label>
+                            Find Your Video
+                            <br/>
+                            <input type="text" id="searchInput"></input>
+                        </label>
+                        <input type="Submit" value="Submit" onChange={this.handleChange}/>
+                    </form>
+                    <button onClick={this.getVideos}></button>
 
-export default App;
+                </div>
+                <div>
+                    {this
+                        .state
+                        .videos
+                        .map((video, index) => {
+                            const searchResults = new video(video.id);
+
+                            return (
+                                <div>
+                                    Video {index(0)}
+                                </div>
+                            )
+                        })}
+                </div >
+
+            </body>
+        )
+    }
+
+}
