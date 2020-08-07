@@ -13,9 +13,18 @@ class App extends Component {
         super(props)
 
         this.state = {
-            videos: []
+            videos: [],
+            index: 0
         };
     }
+
+      //let userChoice = onClick =>
+      selectVideo(){
+        this.setState(this.state.videos[index].id.videoId)
+        let selectedVideo ="https://www.youtube.com/embed/" + userChoice + "?autoplay=1&origin=http://example.com"
+        return selectedVideo
+    }
+
     render() {
         return (
         <body className="container">
@@ -30,8 +39,8 @@ class App extends Component {
                     width="640"
                     height="360"
                     src="https://www.youtube.com/embed/BtfucXjju0k?autoplay=1&origin=http://example.com"
-                    src="https://www.youtube.com/embed/BtfucXjju0k?autoplay=1&origin=http://example.com"
-                    frameborder="0"></iframe>
+                    frameborder="0">
+                </iframe>
             </div>
         </body>
         );
