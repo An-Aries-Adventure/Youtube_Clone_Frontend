@@ -3,10 +3,11 @@ import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Component} from 'react';
 import API_KEY from './config/default.json'
+import './Components/Stylesheets/main.css'
 
 const ApiKey = API_KEY;
 
-class App extends Component {
+export default class App extends Component {
 
     constructor(props) {
         super(props)
@@ -60,8 +61,6 @@ class App extends Component {
                 <div>
                     <h1>Youtube Clone</h1>
 
-                    {/* <SearchBar/> */}
-
                     <iframe
                         id="ytplayer"
                         type="text/html"
@@ -71,18 +70,34 @@ class App extends Component {
                         frameborder="0"></iframe>
                 </div>
                 <div>
-                <form onSubmit={this.getVideos}>
-                    <label>
-                        Find Your Video  <br/>
-                        <input type="text" id ="searchInput"></input>
-                    </label>
-                    <input type="Submit" value="Submit" onChange={this.handleChange}/>
-                </form>
+                    <form onSubmit={this.getVideos}>
+                        <label>
+                            Find Your Video
+                            <br/>
+                            <input type="text" id="searchInput"></input>
+                        </label>
+                        <input type="Submit" value="Submit" onChange={this.handleChange}/>
+                    </form>
+                    <button onClick={this.getVideos}></button>
 
-            </div>
+                </div>
+                <div>
+                    {this
+                        .state
+                        .videos
+                        .map((video, index) => {
+                            const searchResults = new video(video.id);
+
+                            return (
+                                <div>
+                                    Video {index(0)}
+                                </div>
+                            )
+                        })}
+                </div >
+
             </body>
-        );
+        )
     }
-}
 
-export default App;
+}
