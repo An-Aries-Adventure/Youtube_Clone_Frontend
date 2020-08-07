@@ -14,7 +14,9 @@ class App extends Component {
         this.state = {
             videos: [],
             searchTerm: '',
-            loading: true
+            loading: true,
+            index: null
+    
         };
 
         this.getVideos = this
@@ -40,8 +42,8 @@ class App extends Component {
                 console.log(videoData);
                 this.setState({
                     videos: videoData,
-                    index: 0,
-                    loading: !true
+                    loading: !true,
+                    index: 0
                 })
                 console.log(this.state.videos)
             })
@@ -54,12 +56,34 @@ class App extends Component {
         this.getVideos();
     }
 
-    //   //let userChoice = onClick =>
-    //   selectVideo(){
-    //     this.setState(this.state.videos[index].id.videoId)
-    //     let selectedVideo ="https://www.youtube.com/embed/" + userChoice + "?autoplay=1&origin=http://example.com"
-    //     return selectedVideo
-    // }
+    
+    selectVideo() {
+        console.log(this.state.loading);
+        console.log(this.state.index);
+        console.log(this.state.videos);
+        console.log(this.state.videos[this.state.index]);
+    var chosenVideo = this.state.videos.items[this.state.index].id.videoId;
+
+        return "https://www.youtube.com/embed/" +`${chosenVideo}`+ "?autoplay=1&origin=http://example.com"
+    }
+
+
+    renderIframe(){
+        if (this.state.loading === !true) {
+        return (
+                <iframe
+                    id="ytplayer"
+                    type="text/html"
+                    width="640"
+                    height="360"
+                    src = {this.selectVideo()}
+                    frameborder="0">
+                </iframe>
+        )
+        }
+    }
+
+
 
     render() {
         return (
@@ -67,18 +91,7 @@ class App extends Component {
             <div>
                 <h1>Youtube Clone</h1>
                 
-                <p>
-                    getVideos()
-                </p>
-
-                <iframe
-                    id="ytplayer"
-                    type="text/html"
-                    width="640"
-                    height="360"
-                    src="https://www.youtube.com/embed/BtfucXjju0k?autoplay=1&origin=http://example.com"
-                    frameborder="0">
-                </iframe>
+                {this.renderIframe()}
             </div>
             </body>
         );
