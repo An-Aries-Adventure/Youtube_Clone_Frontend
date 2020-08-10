@@ -68,7 +68,7 @@ export default class App extends Component {
         return "https://www.youtube.com/embed/" +`${chosenVideo}`+ "?autoplay=1&origin=http://example.com"
     }
 
-    renderIframe(){
+    renderIFrame(){
         if (this.state.loading === !true) {
         return (
                 <iframe
@@ -79,17 +79,21 @@ export default class App extends Component {
                     src = {this.selectVideo()}
                     frameborder="0">
                 </iframe>
-        )
-        }
+        )}
     }
 
 
     render() {
-        return (
+
+        if (this.state.videos == undefined){
+            return(<h1>Loading...</h1>);
+        }
+        else {
+            return(
             <body className="container">
                 <div>
                     <h1>Youtube Clone</h1>
-                {renderIframe()}
+                {this.renderIFrame()}
                 </div>
                 <div>
                     <form onSubmit={this.getVideos}>
@@ -103,11 +107,8 @@ export default class App extends Component {
                     <button onClick={this.getVideos}></button>
 
                 </div>
-                <div>
-                    {this
-                        .state
-                        .videos
-                        .map((video, index) => {
+                {/* <div>
+                    {this.state.videos.map((video, index) => {
                             const searchResults = new video(video.id);
 
                             return (
@@ -116,10 +117,10 @@ export default class App extends Component {
                                 </div>
                             )
                         })}
-                </div >
+                </div > */}
 
             </body>
-        )
+            )}
     }
 
 }
