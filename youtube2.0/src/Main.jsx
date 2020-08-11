@@ -20,19 +20,29 @@ export default class App extends Component {
     
         };
 
-        this.getVideos = this
-            .getVideos
+        this.handleSubmit = this
+            .handleSubmit
             .bind(this);
         this.handleChange = this
             .handleChange
             .bind(this);
+        
     };
 
+    handleSubmit(event){
+        console.log(this.state.searchTerm);
+    }
+
+
     handleChange(event) {
+        console.log(event.target.value)
         this.setState({searchTerm: event.target.value}); //this is HANDLECHANGE(USER INPUT)
+    console.log(this.state.searchTerm)        
+        
     }
 
     getVideos = () => {
+        console.log(this.state.searchTerm)
         const ApiKey = API_KEY;
         const apiEndpoint = "https://www.googleapis.com/youtube/v3/search?key=" + `${ApiKey.API_KEY}` + "&part=snippet&q=" + `${this.state.searchTerm}`;
         console.log(apiEndpoint);
@@ -96,15 +106,14 @@ export default class App extends Component {
                 {this.renderIFrame()}
                 </div>
                 <div>
-                    <form onSubmit={this.getVideos}>
+                    <form onSubmit={this.handleSubmit}>
                         <label>
                             Find Your Video
                             <br/>
-                            <input type="text" id="searchInput"></input>
+                            <input type="text"  value={this.state.searchTerm} onChange={this.handleChange} />
                         </label>
-                        <input type="Submit" value="Submit" onChange={this.handleChange}/>
+                        <input type="Submit"/>
                     </form>
-                    <button onClick={this.getVideos}></button>
 
                 </div>
                 {/* <div>
