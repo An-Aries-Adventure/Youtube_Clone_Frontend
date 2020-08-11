@@ -20,12 +20,10 @@ export default class App extends Component {
     
         };
 
-        this.getVideos = this
-            .getVideos
-            .bind(this);
-        this.handleChange = this
-            .handleChange
-            .bind(this);
+    
+        this.getVideos = this.getVideos.bind(this);
+
+        this.handleChange = this.handleChange.bind(this);
     };
 
     handleChange(event) {
@@ -40,7 +38,7 @@ export default class App extends Component {
             .get(apiEndpoint)
             .then((response) => {
                 let videoData = response.data;
-                console.log(videoData);
+                // console.log(videoData);
                 this.setState({
                     videos: videoData,
                     loading: !true,
@@ -50,7 +48,7 @@ export default class App extends Component {
             })
         // this.setState({videos: ''})
 
-        console.log(this.state.videos)
+        // console.log(this.state.videos)
     };
 
     componentDidMount = () => {
@@ -59,11 +57,8 @@ export default class App extends Component {
 
     
     selectVideo() {
-        console.log(this.state.loading);
-        console.log(this.state.index);
-        console.log(this.state.videos);
         console.log(this.state.videos[this.state.index]);
-    var chosenVideo = this.state.videos.items[this.state.index].id.videoId;
+        var chosenVideo = this.state.videos.items[this.state.index].id.videoId;
 
         return "https://www.youtube.com/embed/" +`${chosenVideo}`+ "?autoplay=1&origin=http://example.com"
     }
@@ -77,15 +72,25 @@ export default class App extends Component {
                     width="640"
                     height="360"
                     src = {this.selectVideo()}
-                    frameborder="0">
+                    frameBorder="0">
                 </iframe>
         )}
     }
 
+    VideoTile (videos, onVideoClick){
+        return (
+            <div onClick = {() => onVideoClick(videos)}>
+                 <img style={{marginRight: '10px'}} alt="thumbnail" src={videos}/>
+                <b><p>{videos.snippet.title}</p></b>
+            </div>
+        )
+    }
 
     render() {
 
-        if (this.state.videos == undefined){
+        const {videos, index} = this.state
+
+        if (videos === undefined){
             return(<h1>Loading...</h1>);
         }
         else {
@@ -96,7 +101,7 @@ export default class App extends Component {
                 {this.renderIFrame()}
                 </div>
                 <div>
-                    <form onSubmit={this.getVideos}>
+                    <form  onSubmit={this.handleChange}>
                         <label>
                             Find Your Video
                             <br/>
@@ -104,11 +109,11 @@ export default class App extends Component {
                         </label>
                         <input type="Submit" value="Submit" onChange={this.handleChange}/>
                     </form>
-                    <button onClick={this.getVideos}></button>
+                    <button onClick={this.selectVideo}></button>
 
                 </div>
                 {/* <div>
-                    {this.state.videos.map((video, index) => {
+                    {videos.map((video, index) => {
                             const searchResults = new video(video.id);
 
                             return (
@@ -118,7 +123,6 @@ export default class App extends Component {
                             )
                         })}
                 </div > */}
-
             </body>
             )}
     }
