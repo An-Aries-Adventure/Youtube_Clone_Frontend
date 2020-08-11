@@ -88,7 +88,7 @@ export default class App extends Component {
 
     render() {
 
-        if (this.state.videos === undefined) {
+        if (this.state.videos == undefined) {
             return (
                 <h1>Loading...</h1>
             );
