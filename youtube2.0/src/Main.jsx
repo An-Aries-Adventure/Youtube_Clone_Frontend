@@ -41,7 +41,7 @@ export default class App extends Component {
         
     }
 
-    getVideos = () => {
+    getVideos() {
         console.log(this.state.searchTerm)
         const ApiKey = API_KEY;
         const apiEndpoint = "https://www.googleapis.com/youtube/v3/search?key=" + `${ApiKey.API_KEY}` + "&part=snippet&q=" + `${this.state.searchTerm}`;
