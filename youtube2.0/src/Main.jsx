@@ -17,22 +17,41 @@ export default class App extends Component {
             searchTerm: '',
             loading: true,
             index: null
-    
+
         };
 
+<<<<<<< HEAD
     
         this.getVideos = this.getVideos.bind(this);
 
         this.handleChange = this.handleChange.bind(this);
+=======
+        this.handleSubmit = this
+            .handleSubmit
+            .bind(this);
+        this.handleChange = this
+            .handleChange
+            .bind(this);
+
+>>>>>>> 4b49062b6cb6b6fe86793bce64630f0e7dba72f8
     };
 
-    handleChange(event) {
-        this.setState({searchTerm: event.target.value}); //this is HANDLECHANGE(USER INPUT)
+    handleSubmit(event) {
+        console.log(this.state.searchTerm);
+        event.preventDefault();
+        this.getVideos();
     }
 
-    getVideos = () => {
+    handleChange(event) {
+        console.log(event.target.value)
+        this.setState({searchTerm: event.target.value}); //this is HANDLECHANGE(USER INPUT)
+        console.log(this.state.searchTerm)
+
+    }
+
+    getVideos() {
         const ApiKey = API_KEY;
-        const apiEndpoint = "https://www.googleapis.com/youtube/v3/search?key=" + `${ApiKey.API_KEY}` + "&part=snippet&q=" + `${this.state.searchTerm}`;
+        const apiEndpoint = "https://www.googleapis.com/youtube/v3/search?key=" + `${ApiKey.API_KEY}` + "&part=snippet&type=video&q=" + `${this.state.searchTerm}`;
         console.log(apiEndpoint);
         axios
             .get(apiEndpoint)
@@ -44,33 +63,41 @@ export default class App extends Component {
                     loading: !true,
                     index: 0
                 })
-                console.log(this.state.videos)
             })
+<<<<<<< HEAD
         // this.setState({videos: ''})
 
         // console.log(this.state.videos)
+=======
+            .catch((error)=>{
+                console.log(error)
+            })
+>>>>>>> 4b49062b6cb6b6fe86793bce64630f0e7dba72f8
     };
 
     componentDidMount = () => {
         this.getVideos();
     }
 
-    
     selectVideo() {
+<<<<<<< HEAD
         console.log(this.state.videos[this.state.index]);
+=======
+>>>>>>> 4b49062b6cb6b6fe86793bce64630f0e7dba72f8
         var chosenVideo = this.state.videos.items[this.state.index].id.videoId;
 
-        return "https://www.youtube.com/embed/" +`${chosenVideo}`+ "?autoplay=1&origin=http://example.com"
+        return "https://www.youtube.com/embed/" + `${chosenVideo}` + "?autoplay=1&origin=http://example.com"
     }
 
-    renderIFrame(){
+    renderIFrame() {
         if (this.state.loading === !true) {
-        return (
+            return (
                 <iframe
                     id="ytplayer"
                     type="text/html"
                     width="640"
                     height="360"
+<<<<<<< HEAD
                     src = {this.selectVideo()}
                     frameBorder="0">
                 </iframe>
@@ -114,6 +141,40 @@ export default class App extends Component {
                 </div>
                 {/* <div>
                     {videos.map((video, index) => {
+=======
+                    src={this.selectVideo()}
+                    frameborder="0"></iframe>
+            )
+        }
+    }
+
+    render() {
+
+        if (this.state.videos === undefined) {
+            return (
+                <h1>Loading...</h1>
+            );
+        } else {
+            return (
+                <div className="container">
+                    <div>
+                        <h1>Youtube Clone</h1>
+                        {this.renderIFrame()}
+                    </div>
+                    <div>
+                        <form onSubmit={this.handleSubmit}>
+                            <label>
+                                Find Your Video
+                                <br/>
+                                <input type="text" value={this.state.searchTerm} onChange={this.handleChange}/>
+                            </label>
+                            <input type="Submit"/>
+                        </form>
+
+                    </div>
+                    {/* <div>
+                    {this.state.videos.map((video, index) => {
+>>>>>>> 4b49062b6cb6b6fe86793bce64630f0e7dba72f8
                             const searchResults = new video(video.id);
 
                             return (
@@ -123,8 +184,15 @@ export default class App extends Component {
                             )
                         })}
                 </div > */}
+<<<<<<< HEAD
             </body>
             )}
+=======
+
+                </div>
+            )
+        }
+>>>>>>> 4b49062b6cb6b6fe86793bce64630f0e7dba72f8
     }
 
 }
