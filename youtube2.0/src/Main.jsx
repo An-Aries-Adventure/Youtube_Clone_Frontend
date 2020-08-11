@@ -17,7 +17,7 @@ export default class App extends Component {
             searchTerm: '',
             loading: true,
             index: null
-    
+
         };
 
         this.handleSubmit = this
@@ -26,25 +26,25 @@ export default class App extends Component {
         this.handleChange = this
             .handleChange
             .bind(this);
-        
+
     };
 
-    handleSubmit(event){
+    handleSubmit(event) {
         console.log(this.state.searchTerm);
+        event.preventDefault();
+        this.getVideos();
     }
-
 
     handleChange(event) {
         console.log(event.target.value)
         this.setState({searchTerm: event.target.value}); //this is HANDLECHANGE(USER INPUT)
-    console.log(this.state.searchTerm)        
-        
+        console.log(this.state.searchTerm)
+
     }
 
     getVideos() {
-        console.log(this.state.searchTerm)
         const ApiKey = API_KEY;
-        const apiEndpoint = "https://www.googleapis.com/youtube/v3/search?key=" + `${ApiKey.API_KEY}` + "&part=snippet&q=" + `${this.state.searchTerm}`;
+        const apiEndpoint = "https://www.googleapis.com/youtube/v3/search?key=" + `${ApiKey.API_KEY}` + "&part=snippet&type=video&q=" + `${this.state.searchTerm}`;
         console.log(apiEndpoint);
         axios
             .get(apiEndpoint)
@@ -56,67 +56,61 @@ export default class App extends Component {
                     loading: !true,
                     index: 0
                 })
-                console.log(this.state.videos)
             })
-        // this.setState({videos: ''})
-
-        console.log(this.state.videos)
+            .catch((error)=>{
+                console.log(error)
+            })
     };
 
     componentDidMount = () => {
         this.getVideos();
     }
 
-    
     selectVideo() {
-        console.log(this.state.loading);
-        console.log(this.state.index);
-        console.log(this.state.videos);
-        console.log(this.state.videos[this.state.index]);
-    var chosenVideo = this.state.videos.items[this.state.index].id.videoId;
+        var chosenVideo = this.state.videos.items[this.state.index].id.videoId;
 
-        return "https://www.youtube.com/embed/" +`${chosenVideo}`+ "?autoplay=1&origin=http://example.com"
+        return "https://www.youtube.com/embed/" + `${chosenVideo}` + "?autoplay=1&origin=http://example.com"
     }
 
-    renderIFrame(){
+    renderIFrame() {
         if (this.state.loading === !true) {
-        return (
+            return (
                 <iframe
                     id="ytplayer"
                     type="text/html"
                     width="640"
                     height="360"
-                    src = {this.selectVideo()}
-                    frameborder="0">
-                </iframe>
-        )}
+                    src={this.selectVideo()}
+                    frameborder="0"></iframe>
+            )
+        }
     }
-
 
     render() {
 
-        if (this.state.videos == undefined){
-            return(<h1>Loading...</h1>);
-        }
-        else {
-            return(
-            <body className="container">
-                <div>
-                    <h1>Youtube Clone</h1>
-                {this.renderIFrame()}
-                </div>
-                <div>
-                    <form onSubmit={this.handleSubmit}>
-                        <label>
-                            Find Your Video
-                            <br/>
-                            <input type="text"  value={this.state.searchTerm} onChange={this.handleChange} />
-                        </label>
-                        <input type="Submit"/>
-                    </form>
+        if (this.state.videos === undefined) {
+            return (
+                <h1>Loading...</h1>
+            );
+        } else {
+            return (
+                <div className="container">
+                    <div>
+                        <h1>Youtube Clone</h1>
+                        {this.renderIFrame()}
+                    </div>
+                    <div>
+                        <form onSubmit={this.handleSubmit}>
+                            <label>
+                                Find Your Video
+                                <br/>
+                                <input type="text" value={this.state.searchTerm} onChange={this.handleChange}/>
+                            </label>
+                            <input type="Submit"/>
+                        </form>
 
-                </div>
-                {/* <div>
+                    </div>
+                    {/* <div>
                     {this.state.videos.map((video, index) => {
                             const searchResults = new video(video.id);
 
@@ -128,8 +122,9 @@ export default class App extends Component {
                         })}
                 </div > */}
 
-            </body>
-            )}
+                </div>
+            )
+        }
     }
 
 }
