@@ -43,15 +43,15 @@ export default class App extends Component {
     }
 
     handleChange(event) {
-        console.log(event.target.value)
+        // console.log(event.target.value)
         this.setState({searchTerm: event.target.value}); //this is HANDLECHANGE(USER INPUT)
-        console.log(this.state.searchTerm)
+        // console.log(this.state.searchTerm)
 
     }
 
     getVideos() {
         const ApiKey = API_KEY;
-        const apiEndpoint = "https://www.googleapis.com/youtube/v3/search?key=" + `${ApiKey.API_KEY}` + "&part=snippet&type=video&q=" + `${this.state.searchTerm}`;
+        const apiEndpoint = "https://www.googleapis.com/youtube/v3/search?key=" + `${ApiKey}` + "&part=snippet&type=video&q=" + `${this.state.searchTerm}`;
         console.log(apiEndpoint);
         axios
             .get(apiEndpoint)
