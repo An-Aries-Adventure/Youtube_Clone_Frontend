@@ -19,7 +19,7 @@ h1 {
     width: 100%;
     margin-top:20px;
     height:75px;
-    position: relative;
+    /* position: fixed; */
  
 
 
@@ -122,3 +122,8 @@ img:hover{
     cursor: pointer;
     width: 200px
 }
+
+
+/* videoDescription.Title{
+    font-size: 100px;
+} */
