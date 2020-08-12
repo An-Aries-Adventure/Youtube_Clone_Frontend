@@ -1,3 +1,50 @@
-label {
-    color: red;
+:root{
+    --myFont: 'Permanent Marker', cursive; font-weight: lighter;
+}
+
+
+h1 {
+    text-shadow: 4px 4px #1a1818;
+  }
+
+
+
+.fontTitle{
+    display:grid;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 45px;
+    background-color: whitesmoke;
+    color:coral;
+    text-align: center;
+    width: 100%;
+ 
+
+
+}
+
+.searchForm{
+    padding-top: 25px;
+    padding-bottom: 25px;
+    justify-content: center;
+    display:grid;
+    font-family: var(--myFont);
+ 
+}
+
+.mediaContainer{
+    width: 100%;
+    display: grid;
+    justify-content: center;
+}
+
+#subBut{
+    background-color: whitesmoke;
+    color: black;
+    width: 100px;
+    font-size: 18px;
+    border-color: coral;
+    border-style: solid;
+    border-radius: 10%;
+    margin-left: 15px;
+    font-weight:lighter;
 }

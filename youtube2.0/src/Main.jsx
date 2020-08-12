@@ -2,10 +2,9 @@ import React from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Component} from 'react';
-import API_KEY from './config/default.json'
+import config from './config/default.json'
 import './Components/Stylesheets/main.css'
-
-const ApiKey = API_KEY;
+import {Container , Row , Col} from 'react-bootstrap'
 
 export default class App extends Component {
 
@@ -40,9 +39,9 @@ export default class App extends Component {
 
     }
 
-    getVideos(){
-        const ApiKey = API_KEY;
-        const apiEndpoint = "https://www.googleapis.com/youtube/v3/search?key=" + `${ApiKey.API_KEY}` + "&part=snippet&type=video&q=" + `${this.state.searchTerm}`;
+    getVideos() {
+        const ApiKey = config.API_KEY;
+        const apiEndpoint = "https://www.googleapis.com/youtube/v3/search?key=" + `${ApiKey}` + "&part=snippet&type=video&q=" + `${this.state.searchTerm}`;
         console.log(apiEndpoint);
         axios
             .get(apiEndpoint)
@@ -55,7 +54,7 @@ export default class App extends Component {
                     index: 0
                 })
             })
-            .catch((error)=>{
+            .catch((error) => {
                 console.log(error)
             })
     };
@@ -85,40 +84,32 @@ export default class App extends Component {
     }
 
     render() {
-        
+
         if (this.state.videos === undefined) {
             return (
                 <h1>Loading...</h1>
             );
         } else {
             return (
-                <div className="container">
-                    <div>
-                        <h1>Youtube Clone</h1>
-                        {this.renderIFrame()}
-                    </div>
-                    <div>
-                        <form onSubmit={this.handleSubmit}>
-                                <label>
-                                Find Your Video
-                                <br/>
-                                <input type="text" value={this.state.searchTerm} onChange={this.handleChange}/>
-                                </label>
-                            <input type="Submit"/>
-                        </form>
-                    </div>
-                    {/* <div>
-                    {this.state.videos.map((video, index) => {
-                            const searchResults = new video(video.id);
-                            return (
-                                <div>
-                                    Video {index(0)}
-                                </div>
-                            )
-                        })}
-                </div > */}
+                <Container>
+                    <Row>
+                        <h1 className="fontTitle">Youtube Clone</h1>
+                    </Row>
 
-                </div>
+                    <Row className="searchForm">
+                        <form onSubmit={this.handleSubmit}>
+                            <label>
+                                <input type="text"  placeholder="Search" value={this.state.searchTerm} onChange={this.handleChange}/>
+                            </label>
+                            <input id="subBut" type="Submit"/>
+                        </form>
+                    </Row>
+
+                    <Row className="mediaContainer">
+                        {this.renderIFrame()}
+                    </Row>
+
+                </Container>
             )
         }
     }
