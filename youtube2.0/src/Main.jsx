@@ -72,6 +72,16 @@ export default class App extends Component {
         return "https://www.youtube.com/embed/" + `${chosenVideo}` + "?autoplay=1&origin=http://example.com"
     }
 
+    // videoDescription(){
+    //     if (this.state.loading === !true) {
+    //         let description = this.state.videos.items[this.state.index].snippet.description
+    //         return (
+    //             <div>
+    //                 {description} 
+    //             </div>
+    //         )
+    // }
+
     renderIFrame() {
         if (this.state.loading === !true) {
             return (
@@ -81,7 +91,8 @@ export default class App extends Component {
                     width="640"
                     height="360"
                     src={this.selectVideo()}
-                    frameborder="0"></iframe>
+                    frameBorder="0"></iframe>
+       
             )
         }
     }
@@ -95,11 +106,24 @@ export default class App extends Component {
                 return (
                         <li><img src={video.snippet.thumbnails.default.url}></img></li>
                     )
-                });
+            });
                
         }
         
     }
+
+    videoDescription(){
+        if (this.state.loading === !true) {
+            return(
+                this.state.videos.items[this.state.index].snippet.title + " - " + 
+                this.state.videos.items[this.state.index].snippet.description
+            )
+        }
+
+    }
+
+
+
 
 
     render() {
@@ -126,6 +150,9 @@ export default class App extends Component {
 
                     <Row className="mediaContainer">
                         {this.renderIFrame()}
+                    </Row>
+                    <Row>
+                        {this.videoDescription()}
                     </Row>
                     <br></br>
                     <Row className = "videoList">
