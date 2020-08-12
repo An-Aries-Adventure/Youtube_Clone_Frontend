@@ -19,7 +19,7 @@ h1 {
     width: 100%;
     margin-top:20px;
     height:75px;
-    position: relative;
+    /* position: fixed; */
  
 
 
@@ -40,6 +40,7 @@ h1 {
     background-color: white;
     align-items:center; 
     justify-content: center;
+
     
 }
 
@@ -51,7 +52,9 @@ h1 {
     height:370px;
     background-color: coral;
     align-items: center;
-    margin-bottom:50px
+    margin-bottom:20px;
+    margin-left:auto;
+    margin-right: auto;
 
 }
 
@@ -121,4 +124,20 @@ img{
 img:hover{
     cursor: pointer;
     width: 200px
+}
+
+
+/* videoDescription.Title{
+    font-size: 100px;
+} */
+
+#titleVid{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    font-family: var(--myFont);
+    font-size: 25px;
+    color: black;
+    text-shadow: 1px 1px coral;
+    text-decoration: underline;
 }

@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {Component} from 'react';
 import config from './config/default.json'
 import './Components/Stylesheets/main.css'
-import {Container , Row , Col} from 'react-bootstrap'
+import {Container, Row, NavItem, NavLink} from 'react-bootstrap'
 
 export default class App extends Component {
 
@@ -72,20 +72,16 @@ export default class App extends Component {
     }
 
     selectVideo(videoId) {
-        if(!videoId)
-        var chosenVideo = this.state.videos.items[this.state.index].id.videoId;
+        if(!videoId) {
+            var chosenVideo = this.state.videos.items[this.state.index].id.videoId;
 
-        return"https: //www.youtube.com/embed/" + `${chosenVideo}` + "?autoplay=1&origin=http://example.com"
+            return"https: //www.youtube.com/embed/" + `${chosenVideo}` + "?autoplay=1&origin=http://example.com"
+
+        }
+        else {
+            
+        }
     }
-
-
-    // handleClick(){
-    //         let chosenVideo = this.video.id.videoId;
-    //         return "https://www.youtube.com/embed/" + `${chosenVideo}` + "?autoplay=1&origin=http://example.com"
-    //     }
-        
-  
-        
 
     renderIFrame() {
         if (this.state.loading === !true) {
@@ -97,48 +93,48 @@ export default class App extends Component {
                     height="360"
                     src={this.selectVideo()}
                     frameBorder="0"></iframe>
-       
+
             )
         }
     }
 
-    videoList(){
-        console.log("VIDEOS",this.state.videos.items);
-        if(this.state.videosReturned === true){
+    videoList() {
+        console.log("VIDEOS", this.state.videos.items);
+        if (this.state.videosReturned === true) {
 
-           return this.state.videos.items.map((video, index) => {
+            return this
+                .state
+                .videos
+                .items
+                .map((video, index) => {
                     console.log(video.id.videoId);
                 return (
+                        <ul id="noBull">
                         <li>
                             <img src={video.snippet.thumbnails.default.url} onClick={() => alert("Hi guys!")}></img>
                             <h1>TITLE</h1>
                         </li>
-
+                        </ul>
                     )
-            });
-               
+                });
+
         }
-        
+
     }
 
-    videoDescription(){
+    videoDescription() {
         if (this.state.loading === !true) {
-            return(
-                this.state.videos.items[this.state.index].snippet.description
-            )
+            return (this.state.videos.items[this.state.index].snippet.description)
         };
 
     };
 
-    videoTitle(){
+    videoTitle() {
         if (this.state.loading === !true) {
-            return(
-                this.state.videos.items[this.state.index].snippet.title
-            )
+            return (this.state.videos.items[this.state.index].snippet.title)
         };
 
     };
-
 
     render() {
 
@@ -151,29 +147,48 @@ export default class App extends Component {
                 <Container>
                     <Row>
                         <h1 className="fontTitle">Youtube Clone</h1>
+                        <NavItem>
+                            <NavLink href="https://github.com/dschulz1227">
+                                Damon's Github
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink href="https://github.com/An-Aries-Adventure">
+                                Kyle's Github
+                            </NavLink>
+                        </NavItem>
                     </Row>
 
                     <Row className="searchForm">
                         <form onSubmit={this.handleSubmit}>
                             <label>
-                                <input type="text"  placeholder="Search" value={this.state.searchTerm} onChange={this.handleChange}/>
+                                <input
+                                    type="text"
+                                    placeholder="Search"
+                                    value={this.state.searchTerm}
+                                    onChange={this.handleChange}/>
                             </label>
                             <input id="subBut" type="Submit"/>
                         </form>
                     </Row>
 
-                    <Row className="mediaContainer">
-                        {this.renderIFrame()}
+                    <Container id="overlay">
+                        <Row className="mediaContainer">
+                            {this.renderIFrame()}
+                        </Row>
+                        <Row id="titleVid">
+                            {this.videoTitle()}
+                        </Row>
+                        <Row>
+                            {this.videoDescription()}
+                        </Row>
+                    </Container>
+
+                    <Row id="videolistTitle">
+                        <h2>Top 5 Search Results</h2>
                     </Row>
-                    <Row>
-                        {this.videoTitle()}
-                    </Row>
-                    <Row>
-                        {this.videoDescription()}
-                    </Row>
-                    <br></br>
-                    <Row className = "videoList">
-                    {this.videoList()}
+                    <Row className="videoList">
+                        {this.videoList()}
                     </Row>
 
                 </Container>
