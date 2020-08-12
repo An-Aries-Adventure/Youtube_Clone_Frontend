@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {Component} from 'react';
 import config from './config/default.json'
 import './Components/Stylesheets/main.css'
-import {Container , Row , Col} from 'react-bootstrap'
+import {Container, Row, Col} from 'react-bootstrap'
 
 export default class App extends Component {
 
@@ -72,7 +72,6 @@ export default class App extends Component {
         return "https://www.youtube.com/embed/" + `${chosenVideo}` + "?autoplay=1&origin=http://example.com"
     }
 
-
     renderIFrame() {
         if (this.state.loading === !true) {
             return (
@@ -83,45 +82,47 @@ export default class App extends Component {
                     height="360"
                     src={this.selectVideo()}
                     frameBorder="0"></iframe>
-       
+
             )
         }
     }
 
-    videoList(){
-        console.log("VIDEOS",this.state.videos.items);
-        if(this.state.videosReturned === true){
+    videoList() {
+        console.log("VIDEOS", this.state.videos.items);
+        if (this.state.videosReturned === true) {
 
-           return this.state.videos.items.map((video, index) => {
+            return this
+                .state
+                .videos
+                .items
+                .map((video, index) => {
                     console.log(video.id.videoId);
-                return (
-                        <li><img src={video.snippet.thumbnails.default.url}></img></li>
+                    return (
+                    <ul id="noBull">
+                        <li>
+                            <img src={video.snippet.thumbnails.default.url}></img>
+                        </li>
+                    </ul>
                     )
-            });
-               
+                });
+
         }
-        
+
     }
 
-    videoDescription(){
+    videoDescription() {
         if (this.state.loading === !true) {
-            return(
-                this.state.videos.items[this.state.index].snippet.description
-            )
+            return (this.state.videos.items[this.state.index].snippet.description)
         };
 
     };
 
-    videoTitle(){
+    videoTitle() {
         if (this.state.loading === !true) {
-            return(
-                this.state.videos.items[this.state.index].snippet.title
-            )
+            return (this.state.videos.items[this.state.index].snippet.title)
         };
 
     };
-
-
 
     render() {
 
@@ -139,24 +140,33 @@ export default class App extends Component {
                     <Row className="searchForm">
                         <form onSubmit={this.handleSubmit}>
                             <label>
-                                <input type="text"  placeholder="Search" value={this.state.searchTerm} onChange={this.handleChange}/>
+                                <input
+                                    type="text"
+                                    placeholder="Search"
+                                    value={this.state.searchTerm}
+                                    onChange={this.handleChange}/>
                             </label>
                             <input id="subBut" type="Submit"/>
                         </form>
                     </Row>
 
-                    <Row className="mediaContainer">
-                        {this.renderIFrame()}
+                    <Container id="overlay">
+                        <Row className="mediaContainer">
+                            {this.renderIFrame()}
+                        </Row>
+                        <Row id="titleVid">
+                            {this.videoTitle()}
+                        </Row>
+                        <Row>
+                            {this.videoDescription()}
+                        </Row>
+                    </Container>
+
+                    <Row id="videolistTitle">
+                        <h2>Top 5 Search Results</h2>
                     </Row>
-                    <Row>
-                        {this.videoTitle()}
-                    </Row>
-                    <Row>
-                        {this.videoDescription()}
-                    </Row>
-                    <br></br>
-                    <Row className = "videoList">
-                    {this.videoList()}
+                    <Row className="videoList">
+                        {this.videoList()}
                     </Row>
 
                 </Container>
