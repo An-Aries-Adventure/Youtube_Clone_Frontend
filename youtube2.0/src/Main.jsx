@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {Component} from 'react';
 import config from './config/default.json'
 import './Components/Stylesheets/main.css'
-import {Container, Row, Col} from 'react-bootstrap'
+import {Container, Row, NavItem, NavLink} from 'react-bootstrap'
 
 export default class App extends Component {
 
@@ -98,11 +98,11 @@ export default class App extends Component {
                 .map((video, index) => {
                     console.log(video.id.videoId);
                     return (
-                    <ul id="noBull">
-                        <li>
-                            <img src={video.snippet.thumbnails.default.url}></img>
-                        </li>
-                    </ul>
+                        <ul id="noBull">
+                            <li>
+                                <img src={video.snippet.thumbnails.default.url}></img>
+                            </li>
+                        </ul>
                     )
                 });
 
@@ -135,6 +135,16 @@ export default class App extends Component {
                 <Container>
                     <Row>
                         <h1 className="fontTitle">Youtube Clone</h1>
+                        <NavItem>
+                            <NavLink href="https://github.com/dschulz1227">
+                                Damon's Github
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink href="https://github.com/An-Aries-Adventure">
+                                Kyle's Github
+                            </NavLink>
+                        </NavItem>
                     </Row>
 
                     <Row className="searchForm">
