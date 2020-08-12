@@ -108,18 +108,18 @@ export default class App extends Component {
             return(
                 this.state.videos.items[this.state.index].snippet.description
             )
-        }
+        };
 
-    }
+    };
 
     videoTitle(){
         if (this.state.loading === !true) {
             return(
                 this.state.videos.items[this.state.index].snippet.title
             )
-        }
+        };
 
-    }
+    };
 
 
 
@@ -147,6 +147,9 @@ export default class App extends Component {
 
                     <Row className="mediaContainer">
                         {this.renderIFrame()}
+                    </Row>
+                    <Row>
+                        {this.videoTitle()}
                     </Row>
                     <Row>
                         {this.videoDescription()}

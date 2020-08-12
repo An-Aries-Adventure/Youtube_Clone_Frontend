@@ -12,11 +12,14 @@ h1 {
 .fontTitle{
     display:grid;
     font-family: 'Permanent Marker', cursive;
-    font-size: 45px;
+    font-size: 55px;
     background-color: whitesmoke;
     color:coral;
     text-align: center;
     width: 100%;
+    margin-top:20px;
+    height:75px;
+    position: relative;
  
 
 
@@ -31,20 +34,91 @@ h1 {
  
 }
 
+#overlay{
+    width:max-content;
+    display:grid;
+    background-color: white;
+    align-items:center; 
+    justify-content: center;
+    
+}
+
 .mediaContainer{
-    width: 100%;
+    /* width: 100%; */
     display: grid;
     justify-content: center;
+    width:650px;
+    height:370px;
+    background-color: coral;
+    align-items: center;
+    margin-bottom:50px
+
 }
 
 #subBut{
     background-color: whitesmoke;
-    color: black;
-    width: 100px;
+    color: rgb(87, 84, 84);
+    width: max-content;
     font-size: 18px;
     border-color: coral;
     border-style: solid;
     border-radius: 10%;
     margin-left: 15px;
     font-weight:lighter;
+}
+
+#subBut:hover{
+    background-color:white;
+    border:none;
+    color:coral
+}
+
+.videoList{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    margin-top:10px;
+    background:transparent;
+    padding-top: 25px;
+    margin-right:100;
+    margin-left: -100px;
+    padding-bottom: 25px;
+    
+}
+
+#noBull{
+    list-style-type: none;
+    justify-content: space-evenly;
+}
+
+.videoDescription{
+    display:grid;
+    justify-content: center;
+    
+}
+
+#videolistTitle{
+    display: grid;
+    justify-content: center;
+    padding-top: 50px;
+    font-family: var(--myFont);
+    border-style: solid black;
+    border-width: 2px;
+    
+}
+
+h2:hover{
+    color:white;
+    background-color: black;
+
+}
+
+img{
+    width: 150px;
+}
+
+
+img:hover{
+    cursor: pointer;
+    width: 200px
 }
