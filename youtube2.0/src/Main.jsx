@@ -34,6 +34,7 @@ export default class App extends Component {
         // console.log(this.state.searchTerm);
         event.preventDefault();
         this.getVideos();
+        this.videoList();
     }
 
     handleChange(event) {
@@ -87,18 +88,13 @@ export default class App extends Component {
     }
 
     videoList(){
-        //debugger;
         console.log("VIDEOS",this.state.videos.items);
-        if(this.state.videosReturned){
-            
-           
-                this.state.videos.items.map((video, index) => {
-                    //const searchResults = new video(video.id);
-                    console.log(video);
-                    return (
-                        <div>
-                            {video.id}
-                        </div>
+        if(this.state.videosReturned === true){
+
+            this.state.videos.items.map((video, index) => {
+                    console.log(video.id.videoId);
+                return (
+                        <h3>{video.id.videoId}</h3>
                     )
                 });
         }
@@ -120,30 +116,22 @@ export default class App extends Component {
                         {this.renderIFrame()}
                     </div>
                     <div>
-                        {this.videoList()}
                     </div>
                     <div>
                         <form onSubmit={this.handleSubmit}>
-                                <label>
+                            <label>
                                 Find Your Video
                                 <br/>
                                 <input type="text" value={this.state.searchTerm} onChange={this.handleChange}/>
-                                </label>
+                            </label>
                             <input type="Submit"/>
                         </form>
                     </div>
-                    
-                    {/* <div>
-                    {this.state.videos.map((video, index) => {
-                            const searchResults = new video(video.id);
-                            return (
-                                <div>
-                                    Video {index(0)}
-                                </div>
-                            )
-                        })}
-                </div > */}
-
+                    <div>
+                        <list >
+                         {this.videoList()}
+                        </list>
+                    </div>
                 </div>
             )
         }
