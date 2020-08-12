@@ -26,8 +26,13 @@ export default class App extends Component {
         this.handleChange = this
             .handleChange
             .bind(this);
+        // this.handleClick = this
+        //     .handleClick
+        //     .bind(this);
 
     };
+
+        
 
     handleSubmit(event) {
         // console.log(this.state.searchTerm);
@@ -66,12 +71,21 @@ export default class App extends Component {
         this.getVideos();
     }
 
-    selectVideo() {
+    selectVideo(videoId) {
+        if(!videoId)
         var chosenVideo = this.state.videos.items[this.state.index].id.videoId;
 
-        return "https://www.youtube.com/embed/" + `${chosenVideo}` + "?autoplay=1&origin=http://example.com"
+        return"https: //www.youtube.com/embed/" + `${chosenVideo}` + "?autoplay=1&origin=http://example.com"
     }
 
+
+    // handleClick(){
+    //         let chosenVideo = this.video.id.videoId;
+    //         return "https://www.youtube.com/embed/" + `${chosenVideo}` + "?autoplay=1&origin=http://example.com"
+    //     }
+        
+  
+        
 
     renderIFrame() {
         if (this.state.loading === !true) {
@@ -95,7 +109,11 @@ export default class App extends Component {
            return this.state.videos.items.map((video, index) => {
                     console.log(video.id.videoId);
                 return (
-                        <li><img src={video.snippet.thumbnails.default.url}></img></li>
+                        <li>
+                            <img src={video.snippet.thumbnails.default.url} onClick={() => alert("Hi guys!")}></img>
+                            <h1>TITLE</h1>
+                        </li>
+
                     )
             });
                
@@ -120,7 +138,6 @@ export default class App extends Component {
         };
 
     };
-
 
 
     render() {
