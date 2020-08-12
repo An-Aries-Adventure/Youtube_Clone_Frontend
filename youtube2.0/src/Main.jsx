@@ -81,7 +81,8 @@ export default class App extends Component {
                     width="640"
                     height="360"
                     src={this.selectVideo()}
-                    frameborder="0"></iframe>
+                    frameBorder="0"></iframe>
+
             )
         }
     }
@@ -107,6 +108,12 @@ export default class App extends Component {
                     )
                 });
 
+        }
+    }
+
+    videoDescription() {
+        if (this.state.loading === !true) {
+            return (this.state.videos.items[this.state.index].snippet.title + " - " + this.state.videos.items[this.state.index].snippet.description)
         }
 
     }
@@ -136,20 +143,24 @@ export default class App extends Component {
                             <input id="subBut" type="Submit"/>
                         </form>
                     </Row>
+
                     <Container id="overlay">
                         <Row className="mediaContainer">
                             {this.renderIFrame()}
                         </Row>
-                        
-                        <Row>
-                            <p>Here are some words</p>
-                        </Row>
-
                     </Container>
+                    <Row className="videoDescription">
+                        {this.videoDescription()}
+                    </Row>
                     
+                    <Row id="videolistTitle">
+                        <h2>Top 5 Search Results</h2>
+                    </Row>
+
                     <Row className="videoList">
                         {this.videoList()}
                     </Row>
+
                 </Container>
             )
         }
