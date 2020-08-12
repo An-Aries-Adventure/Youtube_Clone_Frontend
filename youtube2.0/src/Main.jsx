@@ -72,15 +72,6 @@ export default class App extends Component {
         return "https://www.youtube.com/embed/" + `${chosenVideo}` + "?autoplay=1&origin=http://example.com"
     }
 
-    // videoDescription(){
-    //     if (this.state.loading === !true) {
-    //         let description = this.state.videos.items[this.state.index].snippet.description
-    //         return (
-    //             <div>
-    //                 {description} 
-    //             </div>
-    //         )
-    // }
 
     renderIFrame() {
         if (this.state.loading === !true) {
@@ -115,14 +106,20 @@ export default class App extends Component {
     videoDescription(){
         if (this.state.loading === !true) {
             return(
-                this.state.videos.items[this.state.index].snippet.title + " - " + 
                 this.state.videos.items[this.state.index].snippet.description
             )
         }
 
     }
 
+    videoTitle(){
+        if (this.state.loading === !true) {
+            return(
+                this.state.videos.items[this.state.index].snippet.title
+            )
+        }
 
+    }
 
 
 
