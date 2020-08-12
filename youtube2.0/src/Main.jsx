@@ -15,7 +15,8 @@ export default class App extends Component {
             videos: [],
             searchTerm: '',
             loading: true,
-            index: null
+            index: null,
+            videosReturned: false
 
         };
 
@@ -51,7 +52,8 @@ export default class App extends Component {
                 this.setState({
                     videos: videoData,
                     loading: !true,
-                    index: 0
+                    index: 0,
+                    videosReturned: true
                 })
             })
             .catch((error) => {
@@ -82,6 +84,26 @@ export default class App extends Component {
             )
         }
     }
+
+    videoList(){
+        //debugger;
+        console.log("VIDEOS",this.state.videos.items);
+        if(this.state.videosReturned){
+            
+           
+                this.state.videos.items.map((video, index) => {
+                    //const searchResults = new video(video.id);
+                    console.log(video);
+                    return (
+                        <div>
+                            {video.id}
+                        </div>
+                    )
+                });
+        }
+        
+    }
+
 
     render() {
 
