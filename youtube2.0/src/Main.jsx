@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {Component} from 'react';
 import config from './config/default.json'
 import './Components/Stylesheets/main.css'
-import {Container , Row , Col} from 'react-bootstrap'
+import {Container, Row, Col} from 'react-bootstrap'
 
 export default class App extends Component {
 
@@ -86,21 +86,30 @@ export default class App extends Component {
         }
     }
 
-    videoList(){
-        console.log("VIDEOS",this.state.videos.items);
-        if(this.state.videosReturned === true){
+    videoList() {
+        console.log("VIDEOS", this.state.videos.items);
+        if (this.state.videosReturned === true) {
 
-           return this.state.videos.items.map((video, index) => {
+            return this
+                .state
+                .videos
+                .items
+                .map((video, index) => {
                     console.log(video.id.videoId);
-                return (
-                        <li><img src={video.snippet.thumbnails.default.url}></img></li>
+                    return (
+
+                        <ul id="noBull">
+                            <li>
+                                <img src={video.snippet.thumbnails.default.url}></img>
+                            </li>
+                        </ul>
+
                     )
                 });
-               
-        }
-        
-    }
 
+        }
+
+    }
 
     render() {
 
@@ -118,20 +127,29 @@ export default class App extends Component {
                     <Row className="searchForm">
                         <form onSubmit={this.handleSubmit}>
                             <label>
-                                <input type="text"  placeholder="Search" value={this.state.searchTerm} onChange={this.handleChange}/>
+                                <input
+                                    type="text"
+                                    placeholder="Search"
+                                    value={this.state.searchTerm}
+                                    onChange={this.handleChange}/>
                             </label>
                             <input id="subBut" type="Submit"/>
                         </form>
                     </Row>
+                    <Container id="overlay">
+                        <Row className="mediaContainer">
+                            {this.renderIFrame()}
+                        </Row>
+                        
+                        <Row>
+                            <p>Here are some words</p>
+                        </Row>
 
-                    <Row className="mediaContainer">
-                        {this.renderIFrame()}
+                    </Container>
+                    
+                    <Row className="videoList">
+                        {this.videoList()}
                     </Row>
-                    <br></br>
-                    <Row className = "videoList">
-                    {this.videoList()}
-                    </Row>
-
                 </Container>
             )
         }
