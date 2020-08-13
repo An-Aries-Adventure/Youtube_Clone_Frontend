@@ -6,6 +6,7 @@ import config from './config/default.json'
 import './Components/Stylesheets/main.css'
 import {Container, Row, NavItem, NavLink} from 'react-bootstrap'
 import CurrentVideo from "./Components/CurrentVideo"
+import MyForm from './Components/commentForm'
 
 export default class App extends Component {
 
@@ -31,10 +32,7 @@ export default class App extends Component {
 
     };
 
-        
-
     handleSubmit(event) {
-        // console.log(this.state.searchTerm);
         event.preventDefault();
         this.getVideos();
         this.videoList();
@@ -48,7 +46,6 @@ export default class App extends Component {
     getVideos() {
         const ApiKey = config.API_KEY;
         const apiEndpoint = "https://www.googleapis.com/youtube/v3/search?key=" + `${ApiKey}` + "&part=snippet&type=video&q=" + `${this.state.searchTerm}`;
-        console.log(apiEndpoint);
         axios
             .get(apiEndpoint)
             .then((response) => {
@@ -173,14 +170,23 @@ export default class App extends Component {
                     </Row>
 
                     <Container id="overlay">
-                        <Row className="mediaContainer">
-                            {/* {this.startingVideo()} */}
-                            <CurrentVideo videoId ={this.state.currentVideoId}/> 
+                        
+                        <Row className="">
+                            <div className="col-25%">
+                            Words
+                            </div>
+                            <div className="mediaContainer col-50%">
+                            <CurrentVideo videoId ={this.state.currentVideoId}/>
+                            </div>
+                            <div className="commentForm col-25">
+                            <MyForm/>
+                            </div>
                         </Row>
+
                         <Row id="titleVid">
                             {this.videoTitle()}
                         </Row>
-                        <Row>
+                        <Row id="vidDescription">
                             {this.videoDescription()}
                         </Row>
                     </Container>
