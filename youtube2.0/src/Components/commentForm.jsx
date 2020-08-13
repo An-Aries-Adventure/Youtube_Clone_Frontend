@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class MyForm extends Component {
+class CommentForm extends Component {
     render() {
       return (
         <form id="commentForm">
@@ -14,4 +14,4 @@ class MyForm extends Component {
     }
   }
 
-  export default MyForm;
+  export default CommentForm;
