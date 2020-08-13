@@ -93,7 +93,7 @@ h1 {
 
 #noBull{
     list-style-type: none;
-    justify-content: space-evenly;
+    overflow-wrap: break-word;
 }
 
 .videoDescription{
@@ -152,4 +152,18 @@ img:hover{
 .commentForm{
     display: flex;
     justify-content: flex-end;
+}
+
+#leftLink {
+    display:flex;
+    justify-content: flex-start;
+}
+
+#rightLink{
+    display:flex;
+    justify-content: flex-end;
+}
+
+#listTitle{
+    overflow: wrap;
 }

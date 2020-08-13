@@ -4,9 +4,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {Component} from 'react';
 import config from './config/default.json'
 import './Components/Stylesheets/main.css'
-import {Container, Row, NavItem, NavLink} from 'react-bootstrap'
-import CurrentVideo from "./Components/CurrentVideo"
-import MyForm from './Components/commentForm'
+import {Container, Row, NavItem, NavLink, Col} from 'react-bootstrap'
+import CommentForm from './Components/commentForm'
+import CurrentVideo from './Components/CurrentVideo'
 
 export default class App extends Component {
 
@@ -68,12 +68,6 @@ export default class App extends Component {
         this.getVideos();
     }
 
-     
-       handleSelectVideo(videoId){
-       
-
-       }
-    
     videoList() {
         console.log("VIDEOS", this.state.videos.items);
         if (this.state.videosReturned === true) {
@@ -85,21 +79,29 @@ export default class App extends Component {
                 .map((video, index) => {
                     // console.log(video.id.videoId);
                     let videoId = video.id.videoId
-                console.log(videoId)    
-                return (
+                    console.log(videoId)
+                    return (
                         <ul id="noBull">
-                        <li>
-                            <div>
-                                <img src={video.snippet.thumbnails.default.url} onClick={() =>  this.setState({currentVideoId:videoId})}></img>
-                                <text>{video.snippet.title}</text>
-                            </div>
-                        </li>
+
+                            <Row>
+                                <li>
+                                    <img
+                                        src={video.snippet.thumbnails.default.url}
+                                        onClick={() => this.setState({currentVideoId: videoId})}></img>
+                                </li>
+                                
+                            </Row>
+
+                            <Row>
+                                <li>
+                                    <Col id="listTitle">{video.snippet.title}</Col>
+                                </li>
+                            </Row>
+
                         </ul>
                     )
                 });
-
         }
-
     }
 
     videoDescription() {
@@ -127,16 +129,22 @@ export default class App extends Component {
                 <Container>
                     <Row>
                         <h1 className="fontTitle">Youtube Clone</h1>
-                        <NavItem>
-                            <NavLink href="https://github.com/dschulz1227">
-                                Damon's Github
-                            </NavLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavLink href="https://github.com/An-Aries-Adventure">
-                                Kyle's Github
-                            </NavLink>
-                        </NavItem>
+                        <Col id="leftLink">
+                            <NavItem>
+                                <NavLink href="https://github.com/dschulz1227">
+                                    Damon's Github
+                                </NavLink>
+                            </NavItem>
+                        </Col>
+
+                        <Col id="rightLink">
+                            <NavItem>
+                                <NavLink href="https://github.com/An-Aries-Adventure">
+                                    Kyle's Github
+                                </NavLink>
+                            </NavItem>
+                        </Col>
+
                     </Row>
 
                     <Row className="searchForm">
@@ -153,16 +161,16 @@ export default class App extends Component {
                     </Row>
 
                     <Container id="overlay">
-                        
+
                         <Row className="">
                             <div className="col-25%">
-                            Words
+                                {/* this is a place holder */}
                             </div>
                             <div className="mediaContainer col-50%">
-                            <CurrentVideo videoId ={this.state.currentVideoId}/>
+                                <CurrentVideo videoId ={this.state.currentVideoId}/>
                             </div>
                             <div className="commentForm col-25">
-                            <MyForm/>
+                                <CommentForm/>
                             </div>
                         </Row>
 
