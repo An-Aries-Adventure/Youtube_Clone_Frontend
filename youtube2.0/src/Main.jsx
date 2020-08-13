@@ -68,23 +68,6 @@ export default class App extends Component {
         this.getVideos();
     }
 
-    // startingVideo() {
-       
-    //     if (this.state.loading === !true) {
-    //         var chosenVideo = this.state.videos.items[this.state.index].id.videoId;
-    //         return (
-    //             <iframe
-    //                 id="ytplayer"
-    //                 type="text/html"
-    //                 width="640"
-    //                 height="360"
-    //                 src={`https://www.youtube.com/embed/${chosenVideo}`}
-    //                 frameBorder="0"></iframe>
-
-    //         )
-    //     }
-    // }
-
      
        handleSelectVideo(videoId){
        
