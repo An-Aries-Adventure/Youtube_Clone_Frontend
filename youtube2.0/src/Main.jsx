@@ -26,9 +26,6 @@ export default class App extends Component {
         this.handleChange = this
             .handleChange
             .bind(this);
-        // this.handleClick = this
-        //     .handleClick
-        //     .bind(this);
 
     };
 
@@ -71,17 +68,18 @@ export default class App extends Component {
         this.getVideos();
     }
 
-    selectVideo(videoId) {
-        if(!videoId) {
+    selectVideo() {
+     
             var chosenVideo = this.state.videos.items[this.state.index].id.videoId;
 
-            return"https: //www.youtube.com/embed/" + `${chosenVideo}` + "?autoplay=1&origin=http://example.com"
-
-        }
-        else {
-            
-        }
+            return(`https: //www.youtube.com/embed/${chosenVideo}`
+            )
     }
+
+        // else {
+        //     return"https: //www.youtube.com/embed/" + `${videoId}` + "?autoplay=1&origin=http://example.com"
+        // }
+    
 
     renderIFrame() {
         if (this.state.loading === !true) {
@@ -111,7 +109,7 @@ export default class App extends Component {
                 return (
                         <ul id="noBull">
                         <li>
-                            <img src={video.snippet.thumbnails.default.url} onClick={() => alert("Hi guys!")}></img>
+                            <img src={video.snippet.thumbnails.default.url} onClick={() => alert("hi guys!")}></img>
                             <h1>TITLE</h1>
                         </li>
                         </ul>
