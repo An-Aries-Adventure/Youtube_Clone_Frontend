@@ -5,6 +5,7 @@ import {Component} from 'react';
 import config from './config/default.json'
 import './Components/Stylesheets/main.css'
 import {Container, Row, NavItem, NavLink} from 'react-bootstrap'
+import CurrentVideo from "./Components/CurrentVideo"
 
 export default class App extends Component {
 
@@ -16,7 +17,8 @@ export default class App extends Component {
             searchTerm: '',
             loading: true,
             index: null,
-            videosReturned: false
+            videosReturned: false,
+            currentVideoId: null
 
         };
 
@@ -56,7 +58,8 @@ export default class App extends Component {
                     videos: videoData,
                     loading: !true,
                     index: 0,
-                    videosReturned: true
+                    videosReturned: true,
+                    currentVideoId: videoData.items[0].id.videoId
                 })
             })
             .catch((error) => {
@@ -68,34 +71,29 @@ export default class App extends Component {
         this.getVideos();
     }
 
-    selectVideo() {
+    // startingVideo() {
+       
+    //     if (this.state.loading === !true) {
+    //         var chosenVideo = this.state.videos.items[this.state.index].id.videoId;
+    //         return (
+    //             <iframe
+    //                 id="ytplayer"
+    //                 type="text/html"
+    //                 width="640"
+    //                 height="360"
+    //                 src={`https://www.youtube.com/embed/${chosenVideo}`}
+    //                 frameBorder="0"></iframe>
+
+    //         )
+    //     }
+    // }
+
      
-            var chosenVideo = this.state.videos.items[this.state.index].id.videoId;
+       handleSelectVideo(videoId){
+       
 
-            return(`https://www.youtube.com/embed/${chosenVideo}`
-            )
-    }
-
-        // else {
-        //     return"https: //www.youtube.com/embed/" + `${videoId}` + "?autoplay=1&origin=http://example.com"
-        // }
+       }
     
-
-    renderIFrame() {
-        if (this.state.loading === !true) {
-            return (
-                <iframe
-                    id="ytplayer"
-                    type="text/html"
-                    width="640"
-                    height="360"
-                    src={this.selectVideo()}
-                    frameBorder="0"></iframe>
-
-            )
-        }
-    }
-
     videoList() {
         console.log("VIDEOS", this.state.videos.items);
         if (this.state.videosReturned === true) {
@@ -105,12 +103,16 @@ export default class App extends Component {
                 .videos
                 .items
                 .map((video, index) => {
-                    console.log(video.id.videoId);
+                    // console.log(video.id.videoId);
+                    let videoId = video.id.videoId
+                console.log(videoId)    
                 return (
                         <ul id="noBull">
                         <li>
-                            <img src={video.snippet.thumbnails.default.url} onClick={() => alert("hi guys!")}></img>
-                            <h1>TITLE</h1>
+                            <div>
+                                <img src={video.snippet.thumbnails.default.url} onClick={() =>  this.setState({currentVideoId:videoId})}></img>
+                                <text>{video.snippet.title}</text>
+                            </div>
                         </li>
                         </ul>
                     )
@@ -172,7 +174,8 @@ export default class App extends Component {
 
                     <Container id="overlay">
                         <Row className="mediaContainer">
-                            {this.renderIFrame()}
+                            {/* {this.startingVideo()} */}
+                            <CurrentVideo videoId ={this.state.currentVideoId}/> 
                         </Row>
                         <Row id="titleVid">
                             {this.videoTitle()}
