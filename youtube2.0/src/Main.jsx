@@ -66,12 +66,17 @@ export default class App extends Component {
     }
 
     selectVideo() {
+     
+            var chosenVideo = this.state.videos.items[this.state.index].id.videoId;
 
-        var chosenVideo = this.state.videos.items[this.state.index].id.videoId;
-
-        return( "https://www.youtube.com/embed/" + `${chosenVideo}` + "?autoplay=1&origin=http://example.com"
-        )
+            return(`https://www.youtube.com/embed/${chosenVideo}`
+            )
     }
+
+        // else {
+        //     return"https: //www.youtube.com/embed/" + `${videoId}` + "?autoplay=1&origin=http://example.com"
+        // }
+    
 
     renderIFrame() {
         if (this.state.loading === !true) {
