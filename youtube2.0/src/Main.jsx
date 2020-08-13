@@ -72,7 +72,7 @@ export default class App extends Component {
      
             var chosenVideo = this.state.videos.items[this.state.index].id.videoId;
 
-            return(`https: //www.youtube.com/embed/${chosenVideo}`
+            return(`https://www.youtube.com/embed/${chosenVideo}`
             )
     }
 
