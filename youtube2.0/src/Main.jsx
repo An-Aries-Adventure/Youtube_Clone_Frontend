@@ -5,6 +5,7 @@ import {Component} from 'react';
 import config from './config/default.json'
 import './Components/Stylesheets/main.css'
 import {Container, Row, NavItem, NavLink} from 'react-bootstrap'
+import MyForm from './Components/commentForm'
 
 export default class App extends Component {
 
@@ -26,16 +27,10 @@ export default class App extends Component {
         this.handleChange = this
             .handleChange
             .bind(this);
-        // this.handleClick = this
-        //     .handleClick
-        //     .bind(this);
 
     };
 
-        
-
     handleSubmit(event) {
-        // console.log(this.state.searchTerm);
         event.preventDefault();
         this.getVideos();
         this.videoList();
@@ -49,7 +44,6 @@ export default class App extends Component {
     getVideos() {
         const ApiKey = config.API_KEY;
         const apiEndpoint = "https://www.googleapis.com/youtube/v3/search?key=" + `${ApiKey}` + "&part=snippet&type=video&q=" + `${this.state.searchTerm}`;
-        console.log(apiEndpoint);
         axios
             .get(apiEndpoint)
             .then((response) => {
@@ -71,16 +65,12 @@ export default class App extends Component {
         this.getVideos();
     }
 
-    selectVideo(videoId) {
-        if(!videoId) {
-            var chosenVideo = this.state.videos.items[this.state.index].id.videoId;
+    selectVideo() {
 
-            return"https: //www.youtube.com/embed/" + `${chosenVideo}` + "?autoplay=1&origin=http://example.com"
+        var chosenVideo = this.state.videos.items[this.state.index].id.videoId;
 
-        }
-        else {
-            
-        }
+        return( "https://www.youtube.com/embed/" + `${chosenVideo}` + "?autoplay=1&origin=http://example.com"
+        )
     }
 
     renderIFrame() {
@@ -108,12 +98,14 @@ export default class App extends Component {
                 .items
                 .map((video, index) => {
                     console.log(video.id.videoId);
-                return (
+                    return (
                         <ul id="noBull">
-                        <li>
-                            <img src={video.snippet.thumbnails.default.url} onClick={() => alert("Hi guys!")}></img>
-                            <h1>TITLE</h1>
-                        </li>
+                            <li>
+                                <img
+                                    src={video.snippet.thumbnails.default.url}
+                                    onClick={() => alert("Hi guys!")}></img>
+                                <h1>TITLE</h1>
+                            </li>
                         </ul>
                     )
                 });
@@ -173,13 +165,23 @@ export default class App extends Component {
                     </Row>
 
                     <Container id="overlay">
-                        <Row className="mediaContainer">
+                        
+                        <Row className="">
+                            <div className="col-25%">
+                            Words
+                            </div>
+                            <div className="mediaContainer col-50%">
                             {this.renderIFrame()}
+                            </div>
+                            <div className="commentForm col-25">
+                            <MyForm/>
+                            </div>
                         </Row>
+
                         <Row id="titleVid">
                             {this.videoTitle()}
                         </Row>
-                        <Row>
+                        <Row id="vidDescription">
                             {this.videoDescription()}
                         </Row>
                     </Container>
