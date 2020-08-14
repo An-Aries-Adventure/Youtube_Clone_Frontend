@@ -35,7 +35,7 @@ h1 {
 }
 
 #overlay{
-    width:max-content;
+    width:100%;
     display:grid;
     background-color: white;
     align-items:center; 
@@ -46,7 +46,7 @@ h1 {
 }
 
 .mediaContainer{
-    /* width: 100%; */
+    width: max-content;
     display: grid;
     justify-content: center;
     width:650px;
@@ -55,7 +55,7 @@ h1 {
     align-items: center;
     margin-bottom:20px;
     margin-left:auto;
-    margin-right: 60px;
+    margin-right: auto;
     
 
 }
@@ -81,7 +81,7 @@ h1 {
     border-color: coral;
     border-style: solid;
     border-radius: 10%;
-    margin-left: 15px;
+    margin-left: 60px;
     font-weight:lighter;
     font-family:var(--myFont);
     display: flex;
@@ -166,11 +166,14 @@ img:hover{
 
 #vidDescription{
     font-family: 'Roboto', sans-serif;
+    word-wrap: break-word;
 }
 
 .commentForm{
     display: flex;
     justify-content: flex-end;
+    margin-left:20px;
+    font-family: var(--myFont);
 }
 
 #leftLink {
@@ -187,6 +190,22 @@ img:hover{
     overflow: wrap;
 }
 
-#commentbox{
+#text{
     margin-bottom: 10px;
 }
+
+
+.scrollabletextbox {
+    height:350px;
+    width:175px;
+    font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif;
+    overflow:scroll;
+    margin-top: 10px;
+    font-size:12px;
+    font-family: 'Roboto', sans-serif;
+
+
+    
+}
+
+
