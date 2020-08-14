@@ -19,7 +19,9 @@ export default class App extends Component {
             loading: true,
             index: null,
             videosReturned: false,
-            currentVideoId: null
+            currentVideoId: null,
+            currentDes: null,
+            currentTitle: null
 
         };
 
@@ -56,7 +58,9 @@ export default class App extends Component {
                     loading: !true,
                     index: 0,
                     videosReturned: true,
-                    currentVideoId: videoData.items[0].id.videoId
+                    currentVideoId: videoData.items[0].id.videoId,
+                    currentDes: videoData.items[0].snippet.description,
+                    currentTitle: videoData.items[0].snippet.title
                 })
             })
             .catch((error) => {
@@ -87,7 +91,7 @@ export default class App extends Component {
                                 <li>
                                     <img
                                         src={video.snippet.thumbnails.default.url}
-                                        onClick={() => this.setState({currentVideoId: videoId})}></img>
+                                        onClick={() => this.setState({currentVideoId: videoId, currentDes: video.snippet.description, currentTitle: video.snippet.title})}></img>
                                 </li>
                                 
                             </Row>
@@ -106,16 +110,14 @@ export default class App extends Component {
 
     videoDescription() {
         if (this.state.loading === !true) {
-            return (this.state.videos.items[this.state.index].snippet.description)
-        };
-
+            return (this.state.currentDes
+            )};
     };
 
     videoTitle() {
         if (this.state.loading === !true) {
-            return (this.state.videos.items[this.state.index].snippet.title)
-        };
-
+            return (this.state.currentTitle
+        )};
     };
 
     render() {
