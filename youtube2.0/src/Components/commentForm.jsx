@@ -1,17 +1,16 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
+import {Row} from 'react-bootstrap'
 
 class CommentForm extends Component {
     render() {
-      return (
-        <form id="commentForm">
-          
-          <p>Enter your comment:</p>
-          <input
-            type="text" placeholder="comment here..."
-          />
-        </form>
-      );
-    }
-  }
+        return (
+            <form id="searchForm">
 
-  export default CommentForm;
+                <input id="commentbox" type="text" placeholder="comment here..."/>
+                <Row><input id="subButComment" type="Submit"/></Row>
+            </form>
+        );
+    }
+}
+
+export default CommentForm;

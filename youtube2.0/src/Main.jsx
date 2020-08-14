@@ -182,10 +182,7 @@ export default class App extends Component {
 
                             <Col
                                 id="vidDescription"
-                                md={{
-                                size: 6,
-                                offset: 3
-                            }}>{this.videoDescription()}</Col>
+                              >{this.videoDescription()}</Col>
 
                         </Row>
                     </Container>
