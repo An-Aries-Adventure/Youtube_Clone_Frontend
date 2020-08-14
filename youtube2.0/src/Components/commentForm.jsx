@@ -5,15 +5,15 @@ class CommentForm extends Component {
     render() {
         return (
           <div>
-            <form id="searchForm">
-
+            <form id="commentForm">
                 <input id="text" type="text" placeholder="comment here..."/>
                 <Row><input id="subButComment" type="Submit"/></Row>
-            </form>
+            
 
-              <textarea class="scrollabletextbox" name="note">
+              <textarea id="commentForm"class="scrollabletextbox" name="note">
                           ?ADD AXIOS CALL LOGIC HERE?
               </textarea>
+            </form>
           </div>
         );
     }

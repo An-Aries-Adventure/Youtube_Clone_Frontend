@@ -161,26 +161,27 @@ export default class App extends Component {
                         </form>
                     </Row>
 
-                    <Container >
+                    <Container>
 
                         <Row className="">
-                            <div className="col-25%">
+                            <Col className="col-25%">
                                 {/* this is a place holder */}
-                            </div>
-                            <div className="mediaContainer col-50%">
+                            </Col>
+                            <Col className="mediaContainer col-50%">
                                 <CurrentVideo videoId ={this.state.currentVideoId}/>
-                            </div>
-                            <div className="commentForm col-25">
+                            </Col>
+                            <Col id="moveover" className="commentForm col-auto">
                                 <CommentForm/>
-                            </div>
+                            </Col>
                         </Row>
-
+                    </Container>
+                    <Container>
                         <Row id="titleVid">
                             {this.videoTitle()}
                         </Row>
                         <Row id="vidDescription">
 
-                            <Col id="vidDescription">{this.videoDescription()}</Col>
+                            <p id="vidDescription">{this.videoDescription()}</p>
 
                         </Row>
                     </Container>
