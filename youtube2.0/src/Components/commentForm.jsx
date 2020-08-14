@@ -4,11 +4,17 @@ import {Row} from 'react-bootstrap'
 class CommentForm extends Component {
     render() {
         return (
+          <div>
             <form id="searchForm">
 
-                <input id="commentbox" type="text" placeholder="comment here..."/>
+                <input id="text" type="text" placeholder="comment here..."/>
                 <Row><input id="subButComment" type="Submit"/></Row>
             </form>
+
+              <textarea class="scrollabletextbox" name="note">
+                          ?ADD AXIOS CALL LOGIC HERE?
+              </textarea>
+          </div>
         );
     }
 }

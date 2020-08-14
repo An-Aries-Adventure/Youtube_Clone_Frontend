@@ -180,9 +180,7 @@ export default class App extends Component {
                         </Row>
                         <Row id="vidDescription">
 
-                            <Col
-                                id="vidDescription"
-                              >{this.videoDescription()}</Col>
+                            <Col id="vidDescription">{this.videoDescription()}</Col>
 
                         </Row>
                     </Container>

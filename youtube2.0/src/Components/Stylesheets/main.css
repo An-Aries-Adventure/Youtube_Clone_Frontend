@@ -166,6 +166,7 @@ img:hover{
 
 #vidDescription{
     font-family: 'Roboto', sans-serif;
+    word-wrap: break-word;
 }
 
 .commentForm{
@@ -187,6 +188,16 @@ img:hover{
     overflow: wrap;
 }
 
-#commentbox{
+#text{
     margin-bottom: 10px;
+}
+
+
+.scrollabletextbox {
+    height:350px;
+    width:150px;
+    font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif;
+    font-size: 82%;
+    overflow:scroll;
+    
 }
