@@ -209,3 +209,10 @@ img:hover{
 }
 
 
+#likeButton{
+    display:inline-flex;
+    justify-self: center;
+    width:max-content;
+    border:solid 1px black
+   
+}
