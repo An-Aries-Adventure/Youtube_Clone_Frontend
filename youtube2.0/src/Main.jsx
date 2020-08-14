@@ -85,26 +85,23 @@ export default class App extends Component {
                     let videoId = video.id.videoId
                     console.log(videoId)
                     return (
-                        <ul id="noBull">
+                        <Col>
+                            <ul id="noBull">
+                                <div>
+                                    <li>
+                                        <img
+                                            src={video.snippet.thumbnails.default.url}
+                                            onClick={() => this.setState({currentVideoId: videoId, currentDes: video.snippet.description, currentTitle: video.snippet.title})}></img>
+                                    </li>
+                                </div>
+                                <div>
+                                    <li>
+                                        <p id="listTitle">{video.snippet.title}</p>
+                                    </li>
+                                </div>
 
-                            <Row>
-                                <li>
-                                    <Col>
-                                    <img
-                                        src={video.snippet.thumbnails.default.url}
-                                        onClick={() => this.setState({currentVideoId: videoId, currentDes: video.snippet.description, currentTitle: video.snippet.title})}></img>
-                                    </Col>
-                                </li>
-
-                            </Row>
-
-                            <Row>
-                                <li>
-                                    <Col id="listTitle">{video.snippet.title}</Col>
-                                </li>
-                            </Row>
-
-                        </ul>
+                            </ul>
+                        </Col>
                     )
                 });
         }
@@ -112,14 +109,14 @@ export default class App extends Component {
 
     videoDescription() {
         if (this.state.loading === !true) {
-            return (this.state.currentDes
-            )};
+            return (this.state.currentDes)
+        };
     };
 
     videoTitle() {
         if (this.state.loading === !true) {
-            return (this.state.currentTitle
-        )};
+            return (this.state.currentTitle)
+        };
     };
 
     render() {
@@ -182,8 +179,13 @@ export default class App extends Component {
                             {this.videoTitle()}
                         </Row>
                         <Row id="vidDescription">
-                          
-                            <Col id="vidDescription" md={{ size: 6, offset: 3 }}>{this.videoDescription()}</Col>
+
+                            <Col
+                                id="vidDescription"
+                                md={{
+                                size: 6,
+                                offset: 3
+                            }}>{this.videoDescription()}</Col>
 
                         </Row>
                     </Container>
