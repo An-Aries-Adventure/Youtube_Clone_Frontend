@@ -172,7 +172,7 @@ export default class App extends Component {
                                 <CurrentVideo videoId ={this.state.currentVideoId}/>
                             </div>
                             <div className="commentForm col-25">
-                                <CommentForm/>
+                                {/* <CommentForm/> */}
                             </div>
                         </Row>
 

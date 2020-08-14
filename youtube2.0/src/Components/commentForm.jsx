@@ -1,17 +1,24 @@
-import React, { Component } from 'react';
+// import React from 'react';
 
-class CommentForm extends Component {
-    render() {
-      return (
-        <form id="commentForm">
-          
-          <p>Enter your comment:</p>
-          <input
-            type="text" placeholder="comment here..."
-          />
-        </form>
-      );
-    }
-  }
+// const CommentForm = (props) => {
 
-  export default CommentForm;
+//   let comment = document.getElementById("text").value
+
+//   // axios.post(`http://localhost:5000/api/videos/${props.videoId}/comments`, {
+//     "text": comment
+
+//     }).then((res) => {
+//         console.log('res', res)
+//     }).catch((err) => {
+//         console.log('err', err)
+//     });
+
+
+//   return (
+//      alert("Nice! You have submitted a comment to this video!")
+//   )
+// }
+
+
+//   // export default CommentForm;
+
