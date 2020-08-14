@@ -70,7 +70,25 @@ h1 {
     border-radius: 10%;
     margin-left: 15px;
     font-weight:lighter;
+    font-family:var(--myFont)
 }
+
+#subButComment{
+    background-color: whitesmoke;
+    color: rgb(87, 84, 84);
+    width: max-content;
+    font-size: 18px;
+    border-color: coral;
+    border-style: solid;
+    border-radius: 10%;
+    margin-left: 15px;
+    font-weight:lighter;
+    font-family:var(--myFont);
+    display: flex;
+    justify-self: center;
+}
+
+
 
 #subBut:hover{
     background-color:white;
@@ -94,12 +112,13 @@ h1 {
 #noBull{
     list-style-type: none;
     overflow-wrap: break-word;
+    font-family: 'Roboto', sans-serif;
 }
 
 .videoDescription{
     display:grid;
     justify-content: center;
-    
+    overflow-wrap: break-word;    
 }
 
 #videolistTitle{
@@ -141,13 +160,13 @@ img:hover{
     font-size: 25px;
     color: black;
     text-shadow: 1px 1px coral;
-    text-decoration: underline;
+    margin-top:25px
 }
 
 
-/* #vidDescription{
-    font-family: 
-} */
+#vidDescription{
+    font-family: 'Roboto', sans-serif;
+}
 
 .commentForm{
     display: flex;
@@ -166,4 +185,8 @@ img:hover{
 
 #listTitle{
     overflow: wrap;
+}
+
+#commentbox{
+    margin-bottom: 10px;
 }

@@ -68,6 +68,34 @@ export default class App extends Component {
             })
     };
 
+    getComments(videoId){
+
+    axios.get(`http://localhost:5000/api/videos/${videoId}`, {
+    
+    }).then((res) => {
+       console.log('res', res);
+        const commentData = res.data;
+        const videoComments = commentData.comments;
+    return (
+            <div>
+            <text>"Video Comments"</text>
+                <div>
+                 {videoComments}
+                </div>
+            </div>
+    );    
+
+    }).catch((err) => {
+         console.log('No comments exist for this video', err)
+         return (
+             ""
+         )
+    });
+    };
+
+
+
+
     componentDidMount = () => {
         this.getVideos();
     }
@@ -85,24 +113,23 @@ export default class App extends Component {
                     let videoId = video.id.videoId
                     console.log(videoId)
                     return (
-                        <ul id="noBull">
+                        <Col>
+                            <ul id="noBull">
+                                <div>
+                                    <li>
+                                        <img
+                                            src={video.snippet.thumbnails.default.url}
+                                            onClick={() => this.setState({currentVideoId: videoId, currentDes: video.snippet.description, currentTitle: video.snippet.title})}></img>
+                                    </li>
+                                </div>
+                                <div>
+                                    <li>
+                                        <p id="listTitle">{video.snippet.title}</p>
+                                    </li>
+                                </div>
 
-                            <Row>
-                                <li>
-                                    <img
-                                        src={video.snippet.thumbnails.default.url}
-                                        onClick={() => this.setState({currentVideoId: videoId, currentDes: video.snippet.description, currentTitle: video.snippet.title})}></img>
-                                </li>
-                                
-                            </Row>
-
-                            <Row>
-                                <li>
-                                    <Col id="listTitle">{video.snippet.title}</Col>
-                                </li>
-                            </Row>
-
-                        </ul>
+                            </ul>
+                        </Col>
                     )
                 });
         }
@@ -110,14 +137,14 @@ export default class App extends Component {
 
     videoDescription() {
         if (this.state.loading === !true) {
-            return (this.state.currentDes
-            )};
+            return (this.state.currentDes)
+        };
     };
 
     videoTitle() {
         if (this.state.loading === !true) {
-            return (this.state.currentTitle
-        )};
+            return (this.state.currentTitle)
+        };
     };
 
     render() {
@@ -162,7 +189,7 @@ export default class App extends Component {
                         </form>
                     </Row>
 
-                    <Container id="overlay">
+                    <Container >
 
                         <Row className="">
                             <div className="col-25%">
@@ -172,7 +199,7 @@ export default class App extends Component {
                                 <CurrentVideo videoId ={this.state.currentVideoId}/>
                             </div>
                             <div className="commentForm col-25">
-                                {/* <CommentForm/> */}
+                                {this.getComments(this.state.currentVideoId)}
                             </div>
                         </Row>
 
@@ -180,7 +207,11 @@ export default class App extends Component {
                             {this.videoTitle()}
                         </Row>
                         <Row id="vidDescription">
-                            {this.videoDescription()}
+
+                            <Col
+                                id="vidDescription"
+                              >{this.videoDescription()}</Col>
+
                         </Row>
                     </Container>
 
