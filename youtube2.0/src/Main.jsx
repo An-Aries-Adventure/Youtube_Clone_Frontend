@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {Component} from 'react';
 import config from './config/default.json'
 import './Components/Stylesheets/main.css'
-import {Container, Row, NavItem, NavLink, Col} from 'react-bootstrap'
+import {Container, Row, NavItem, NavLink, Col, Button} from 'react-bootstrap'
 import CommentForm from './Components/commentForm'
 import CurrentVideo from './Components/CurrentVideo'
 
@@ -187,6 +187,12 @@ export default class App extends Component {
                             </label>
                             <input id="subBut" type="Submit"/>
                         </form>
+                    
+                    
+                    
+                        <Button id="likeButton">Like</Button><Button id="likeButton">Dislike</Button>
+                        
+                    
                     </Row>
 
                     <Container>
