@@ -89,11 +89,13 @@ export default class App extends Component {
 
                             <Row>
                                 <li>
+                                    <Col>
                                     <img
                                         src={video.snippet.thumbnails.default.url}
                                         onClick={() => this.setState({currentVideoId: videoId, currentDes: video.snippet.description, currentTitle: video.snippet.title})}></img>
+                                    </Col>
                                 </li>
-                                
+
                             </Row>
 
                             <Row>
@@ -162,7 +164,7 @@ export default class App extends Component {
                         </form>
                     </Row>
 
-                    <Container id="overlay">
+                    <Container >
 
                         <Row className="">
                             <div className="col-25%">
@@ -180,7 +182,9 @@ export default class App extends Component {
                             {this.videoTitle()}
                         </Row>
                         <Row id="vidDescription">
-                            {this.videoDescription()}
+                          
+                            <Col id="vidDescription" md={{ size: 6, offset: 3 }}>{this.videoDescription()}</Col>
+
                         </Row>
                     </Container>
 

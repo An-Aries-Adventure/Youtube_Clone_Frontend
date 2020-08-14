@@ -1,9 +1,10 @@
 import React from 'react'
+import { Col } from 'react-bootstrap';
 
 
 const CurrentVideo = (props) =>  {
     return(
-        <div>
+        <div id="overlay">
              <iframe
                     id="ytplayer"
                     type="text/html"

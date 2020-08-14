@@ -99,6 +99,7 @@ h1 {
 .videoDescription{
     display:grid;
     justify-content: center;
+    overflow-wrap: break-word;
     
 }
 
@@ -141,7 +142,7 @@ img:hover{
     font-size: 25px;
     color: black;
     text-shadow: 1px 1px coral;
-    text-decoration: underline;
+    margin-top:25px
 }
 
 
