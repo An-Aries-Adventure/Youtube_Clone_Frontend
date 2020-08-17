@@ -216,11 +216,15 @@ export default class App extends Component {
                         <Row id="titleVid">
                             {this.videoTitle()}
                         </Row>
+                        
                         <Row id="vidDescription">
-
-                            <p id="vidDescription">{this.videoDescription()}</p>
-
+                            <Col className="25%"></Col>
+                            <Col>
+                            <p id="disBorder">{this.videoDescription()}</p>
+                            </Col>
+                            <Col className="25%"></Col>
                         </Row>
+                        
                     </Container>
 
                     <Row id="videolistTitle">

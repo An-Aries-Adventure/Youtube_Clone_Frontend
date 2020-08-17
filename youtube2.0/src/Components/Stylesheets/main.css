@@ -167,6 +167,7 @@ img:hover{
 #vidDescription{
     font-family: 'Roboto', sans-serif;
     word-wrap: break-word;
+    font-weight: bold;
 }
 
 .commentForm{
@@ -215,4 +216,13 @@ img:hover{
     width:max-content;
     border:solid 1px black
    
+}
+
+/* .col{
+    border: red 1px solid;
+} */
+
+#disBorder{
+    border: black 1px solid;
+    padding: 5px 50px 5px 50px
 }
